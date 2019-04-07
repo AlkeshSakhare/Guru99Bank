@@ -48,11 +48,14 @@ public class NewCustomerPage extends TestBase {
 	@FindBy(xpath = "//input[contains(@name,'res')]")
 	WebElement resetBtn;
 
+	@FindBy(xpath = "//*[@id='customer']/tbody/tr[4]/td[2]")
+	WebElement customerId;
+
 	public NewCustomerPage() {
 		PageFactory.initElements(driver, this);
 	}
 
-	public void addCustomer(String name, String gender, String dob, String address, String city, String state,
+	public String addCustomer(String name, String gender, String dob, String address, String city, String state,
 			String pin, String mobile, String email, String password) {
 
 		TestUtility.sendKeysClear(customerNameTxt, name);
@@ -70,6 +73,7 @@ public class NewCustomerPage extends TestBase {
 		TestUtility.sendKeysClear(emailIdTxt, email);
 		TestUtility.sendKeysClear(passwordTxt, password);
 		TestUtility.buttonClickAngular(submitBtn);
+		return customerId.getText();
 	}
 
 	public String[] resetForm(String name, String gender, String dob, String address, String city, String state,

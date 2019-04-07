@@ -43,6 +43,20 @@ public class LoginPage extends TestBase {
 		TestUtility.buttonClickAngular(loginBtn);
 	}
 
+	public void loginByInput1(String userid, String password) {
+		TestUtility.sendKeysByJS(useridTxt, userid);
+		TestUtility.sendKeysByJS(passwordTxt, password);
+		TestUtility.clickElementByJS(loginBtn);
+	}
+
+	public void loginByInput2(String userid, String password) {
+		TestUtility.flash(useridTxt);
+		useridTxt.sendKeys(userid);
+		TestUtility.flash(passwordTxt);
+		passwordTxt.sendKeys(password);
+		TestUtility.flash(loginBtn);
+	}
+
 	public String[] reset(String userid, String password) {
 		TestUtility.sendKeysClear(useridTxt, userid);
 		TestUtility.sendKeysClear(passwordTxt, password);
@@ -51,8 +65,4 @@ public class LoginPage extends TestBase {
 		return data;
 	}
 
-	public NewCustomerPage gotoNewCustomerLink() {
-		TestUtility.buttonClickAngular(newCustomerBtn);
-		return new NewCustomerPage();
-	}
 }

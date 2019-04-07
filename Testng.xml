@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Guru99Bank1">
+	<!--  This is commented extend report
+	<listeners>
+		<listener class-name="com.guru99.demo.Utility.Reporting" />
+	</listeners>
+	-->
+	<listeners>
+		<listener class-name="com.guru99.demo.Utility.ExtentReporterNG" />
+	</listeners>
+	<test name="Guru99Bank1">
+		<parameter name="browser" value="chrome" />
+		<classes>
+			<class name="com.guru99.demo.TestCase.LoginPageTest" />
+			<class name="com.guru99.demo.TestCase.NewCustomerTest" />
+		</classes>
+	</test>
+</suite>

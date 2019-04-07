@@ -1,5 +1,7 @@
 package com.guru99.demo.Utility;
 
+import java.io.IOException;
+
 import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.WebDriver;
@@ -10,56 +12,60 @@ import com.guru99.demo.TestBase.TestBase;
 
 public class WebEventListener extends TestBase implements WebDriverEventListener {
 	public void beforeNavigateTo(String url, WebDriver driver) {
-		System.out.println("Before navigating to: '" + url + "'");
+		logger.info("Before navigating to: '" + url + "'");
 	}
 
 	public void afterNavigateTo(String url, WebDriver driver) {
-		System.out.println("Navigated to:'" + url + "'");
+		logger.info("Navigated to:'" + url + "'");
 	}
 
 	public void beforeChangeValueOf(WebElement element, WebDriver driver) {
-		System.out.println("Value of the:" + element.toString() + " before any changes made");
+		logger.info("Value of the:" + element.toString() + " before any changes made");
 	}
 
 	public void afterChangeValueOf(WebElement element, WebDriver driver) {
-		System.out.println("Element value changed to: " + element.toString());
+		logger.info("Element value changed to: " + element.toString());
 	}
 
 	public void beforeClickOn(WebElement element, WebDriver driver) {
-		System.out.println("Trying to click on: " + element.toString());
+		logger.info("Trying to click on: " + element.toString());
 	}
 
 	public void afterClickOn(WebElement element, WebDriver driver) {
-		System.out.println("Clicked on: " + element.toString());
+		logger.info("Clicked on: " + element.toString());
 	}
 
 	public void beforeNavigateBack(WebDriver driver) {
-		System.out.println("Navigating back to previous page");
+		logger.info("Navigating back to previous page");
 	}
 
 	public void afterNavigateBack(WebDriver driver) {
-		System.out.println("Navigated back to previous page");
+		logger.info("Navigated back to previous page");
 	}
 
 	public void beforeNavigateForward(WebDriver driver) {
-		System.out.println("Navigating forward to next page");
+		logger.info("Navigating forward to next page");
 	}
 
 	public void afterNavigateForward(WebDriver driver) {
-		System.out.println("Navigated forward to next page");
+		logger.info("Navigated forward to next page");
 	}
 
 	public void onException(Throwable error, WebDriver driver) {
-		System.out.println("Exception occured: " + error);
-		TestUtility.takeScreenshotAtEndOfTest();
+		logger.info("Exception occured: " + error);
+		try {
+			TestUtility.takeScreenshotAtEndOfTest();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void beforeFindBy(By by, WebElement element, WebDriver driver) {
-		System.out.println("Trying to find Element By : " + by.toString());
+		logger.info("Trying to find Element By : " + by.toString());
 	}
 
 	public void afterFindBy(By by, WebElement element, WebDriver driver) {
-		System.out.println("Found Element By : " + by.toString());
+		logger.info("Found Element By : " + by.toString());
 	}
 
 	/*
@@ -73,17 +79,17 @@ public class WebEventListener extends TestBase implements WebDriverEventListener
 
 	public void beforeAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
-		System.out.println("Alert shown : " + driver.switchTo().alert().getText());
+		logger.info("Alert shown : " + driver.switchTo().alert().getText());
 	}
 
 	public void afterAlertAccept(WebDriver driver) {
 		// TODO Auto-generated method stub
-		System.out.println("Alert accepted : " + driver.switchTo().alert().getText());
+		logger.info("Alert accepted : " + driver.switchTo().alert().getText());
 	}
 
 	public void afterAlertDismiss(WebDriver driver) {
 		// TODO Auto-generated method stub
-		System.out.println("Alert dismissed : " + driver.switchTo().alert().getText());
+		logger.info("Alert dismissed : " + driver.switchTo().alert().getText());
 	}
 
 	public void beforeAlertDismiss(WebDriver driver) {
@@ -146,4 +152,5 @@ public class WebEventListener extends TestBase implements WebDriverEventListener
 		// TODO Auto-generated method stub
 
 	}
+
 }
